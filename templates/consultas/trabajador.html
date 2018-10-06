@@ -1,0 +1,128 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Consulta de Trabajadores - AgroSoft {% endblock %}
+
+{% block content %}
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-6 col-xs-12 mb-1">
+				<h2 class="content-header-title">Consulta de Trabajadores</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Consultas</a>
+						</li>
+						<li class="breadcrumb-item active">Trabajadores
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-body">
+			<!-- SECRETARIA(O) -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">SECRETARIA (O)</h4>
+							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">{% with total=secretarias.count %} {{total}} {% endwith %}</span></li>
+									<li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="thead-inverse">
+											<tr style="border-top: 1px hidden">
+												<th>CÉDULA</th>
+												<th>NOMBRE</th>
+												<th>APELLIDO</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for dato in usuarios %}
+											<tr>
+												{% if dato.perfil.cargo == "Secretaria(o)" %}
+												<td>{{dato.username}}</td>
+												<td>{{dato.perfil.pri_nombre}}</td>
+												<td>{{dato.perfil.pri_apellido}}</td>
+												{% endif %}
+												{% empty %}
+												<td colspan="3"><center>NO HAY SECRETARIA (O).</center></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- SECRETARIA(O) FIN// -->
+			<!-- INSPECTOR AGRICOLA -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">INSPECTOR AGRÍCOLA</h4>
+							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">{% with total=inspectores.count %} {{total}} {% endwith %}</span></li>
+									<li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="thead-inverse">
+											<tr style="border-top: 1px hidden">
+												<th>CÉDULA</th>
+												<th>NOMBRE</th>
+												<th>APELLIDO</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for dato in usuarios %}
+											<tr>
+												{% if dato.perfil.cargo == "Inspector Agrícola" %}
+												<td>{{dato.username}}</td>
+												<td>{{dato.perfil.pri_nombre}}</td>
+												<td>{{dato.perfil.pri_apellido}}</td>
+												{% endif %}
+												{% empty %}
+												<td colspan="3"><center>NO HAY INSPECTOR AGRÍCOLA.</center></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- INSPECTOR AGRICOLA FIN// -->
+
+
+
+
+
+		</div>
+	</div>
+</div>
+{% endblock %}

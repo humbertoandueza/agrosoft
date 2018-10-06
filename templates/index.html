@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block navleft %} {% endblock %}
+
+{% block body %}
+<body data-open="click" data-menu="vertical-menu" data-col="1-column" class="vertical-layout vertical-menu 1-column  fixed-navbar">
+	{% endblock %}
+
+	{% block content %}
+	<div class="app-content content container-fluid">
+		<div class="content-wrapper">
+			<div class="content-header row">
+			</div>
+			<div class="content-body">
+				<!-- ---------- Carousel ---------- -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="card-body collapse in">
+							<div class="card-block">
+								<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+									<ol class="carousel-indicators">
+										<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+									</ol>
+									<div class="carousel-inner" role="listbox">
+										<div class="carousel-item active">
+											<img src="{% static 'img/carousel/imagen-1.jpg' %}" alt="First slide" width="100%">
+										</div>
+										<div class="carousel-item">
+											<img src="{% static 'img/carousel/imagen-2.jpg' %}" alt="Second slide" width="100%">
+										</div>
+										<div class="carousel-item">
+											<img src="{% static 'img/carousel/imagen-3.jpg' %}" alt="Third slide" width="100%">
+										</div>
+									</div>
+									<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+										<span class="icon-prev" aria-hidden="true"></span>
+										<span class="sr-only">Anterior</span>
+									</a>
+									<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+										<span class="icon-next" aria-hidden="true"></span>
+										<span class="sr-only">Siguiente</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>					
+				<!-- Información -->
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="card">
+						<div class="card-header" style="background-color: #37BC9B;">
+							<h4 class="text-xs-center" >¿Quiénes Somos?</h4>
+						</div>
+						<div class="card-body">
+							<div class="card-block text-xs-center">
+								<p style="text-align: justify; text-indent: 30px;">Somos la instancia designada por el Poder Ejecutivo Nacional para llevar adelante los procesos de coordinación con las cadenas agroproductivas, el desarrollo del sector agrícola rural impulsando la productividad de la nación para optimizar el trabajo productivo y garantizar la seguridad alimentaria de todos los venezolanos.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="card">
+						<div class="card-header" style="background-color: #37BC9B;">
+							<h4 class="text-xs-center" >Misión</h4>
+						</div>
+						<div class="card-body">
+							<div class="card-block text-xs-center">
+								<p style="text-align: justify; text-indent: 30px;">Formular, coordinar la ejecución, dar seguimiento y evaluación de las políticas dirigidas a promover la seguridad alimentaria, impulsar el desarrollo de los circuitos agroproductivas y sistemas agroalimentarios, impulsar el desarrollo de las zonas rurales del país, así como procurar la distribución justa de la tierra y su uso adecuado.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="card">
+						<div class="card-header" style="background-color: #37BC9B;">
+							<h4 class="text-xs-center" >Visión</h4>
+						</div>
+						<div class="card-body">
+							<div class="card-block text-xs-center">
+								<p style="text-align: justify; text-indent: 30px;">Elevar los niveles de eficiencia, eficacia y efectividad en los procesos organizacionales, los cuales se generarán mediante el uso intensivo de tecnologías de información, operadas por equipos de alto rendimiento, diligentes y con total orientación hacia los resultados previstos en el sistema productivo de la economía.<br><br></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

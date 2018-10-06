@@ -1,0 +1,555 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Solicitud de Apertura del Expediente - AgroSoft {% endblock %}
+
+{% block content %}
+<style type="text/css">
+    span.help-block > ul > li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #a94442;
+    
+  }
+</style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+  $(function() {
+
+  // We can attach the `fileselect` event to all file inputs on the page
+  $(document).on('change', ':file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+  });
+
+  // We can watch for our custom `fileselect` event like this
+  $(document).ready( function() {
+      $(':file').on('fileselect', function(event, numFiles, label) {
+
+          var input = $(this).parents('.input-group').find(':text'),
+              log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+          if( input.length ) {
+              input.val(log);
+          } else {
+              if( log ) alert(log);
+          }
+
+      });
+  });
+  
+});
+  function habilitar(value)
+    {
+      if(value==true)
+      {
+        // habilitamos
+        document.getElementById("segundo").disabled=false;
+        document.getElementById("tercero").disabled=false;
+      }else if(value==false){
+        // deshabilitamos
+        document.getElementById("segundo").disabled=true;
+        document.getElementById("tercero").disabled=true;
+      }
+    } 
+  function showDiv3(municipio){
+    if (municipio.value=="Araure"){
+      document.getElementById("araure").style.display="block"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Esteller"){
+      document.getElementById("esteller").style.display="block"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Guanare"){
+      document.getElementById("guanare").style.display="block"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Guanarito"){
+      document.getElementById("guanarito").style.display="block"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Ospino"){
+      document.getElementById("ospino").style.display="block"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Paez"){  
+      document.getElementById("paez").style.display="block"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Sucre"){
+      document.getElementById("sucre").style.display="block"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Turen"){
+      document.getElementById("turen").style.display="block"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Jose Vicente de Unda"){
+      document.getElementById("jose").style.display="block"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Agua Blanca"){
+      document.getElementById("agua").style.display="block"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Papelon"){
+      document.getElementById("papelon").style.display="block"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="San Genaro de Boconoito"){
+      document.getElementById("san_genaro").style.display="block"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="San Rafael de Onoto"){
+      document.getElementById("san_rafael").style.display="block"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+      document.getElementById("santa").style.display="none"
+
+    }if (municipio.value=="Santa Rosalia"){
+      document.getElementById("santa").style.display="block"
+      document.getElementById("san_rafael").style.display="none"
+      document.getElementById("san_genaro").style.display="none"
+      document.getElementById("papelon").style.display="none"
+      document.getElementById("agua").style.display="none"
+      document.getElementById("jose").style.display="none"
+      document.getElementById("turen").style.display="none"
+      document.getElementById("sucre").style.display="none"
+      document.getElementById("paez").style.display="none"
+      document.getElementById("ospino").style.display="none"
+      document.getElementById("guanarito").style.display="none"
+      document.getElementById("guanare").style.display="none"
+      document.getElementById("araure").style.display="none"
+      document.getElementById("esteller").style.display="none"
+    }
+
+  } 
+</script>
+<div class="app-content content container-fluid">
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <!-- Título de Página -->
+      <div class="content-header-left col-md-6 col-xs-12 mb-1">
+        <h2 class="content-header-title">Apertura de Expediente</h2>
+      </div>
+      <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+        <div class="breadcrumb-wrapper col-xs-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a href="#">Solicitudes</a>
+            </li>
+            <li class="breadcrumb-item active"><a href="{% url 'Registros:RegExpediente' %}">Apertura de Expediente</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <!-- Formulario -->
+      <div class="row match-height">
+        <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-header">
+              <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                  <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-body collapse in">
+              <div class="card-block">
+                <form class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                  <div class="form-body">
+                    <!-- Solicitante -->
+                    <div class="col-md-6" style="display: none;">
+                      <div class="form-group">
+                        <select  name="solicitante" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione su Género">
+                          <option value="{{user.perfil.id}}">{{user.perfil.id}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>  
+                  <h4 class="form-section"><i class="icon-clipboard4"></i> Codigo</h4>
+                  <div class="form-group">
+                    <label>Municipio</label>
+                    <select name="municipio" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione el Municipio" onclick="showDiv3(this)" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.municipio.choices %}
+                      <option value="{{ x }}"{% if expedientes.fields.municipio.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                    </select>
+                  </div>
+                  <span class="help-block">{{expedientes.municipio.errors}}</span>  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="input-group" id="araure" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia1" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia1.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia1.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="esteller" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia2" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia2.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia2.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="guanare" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia3" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia3.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia3.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="guanarito" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia4" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia4.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia4.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="ospino" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia5" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia5.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia5.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="paez" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia6.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia6.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="sucre" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia7" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia7.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia7.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="turen" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia8" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia8.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia8.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="jose" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia9" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia9.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia9.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="agua" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia10" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia10.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia10.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="papelon" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia11" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia11.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia11.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="san_genaro" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia12" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia12.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia12.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="san_rafael" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia13" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia13.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia13.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="input-group" id="santa" style="display: none">
+                          <label>Parroquia</label>
+                          <select name="parroquia14" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Seleccione la Parroquia" onblur="enviar(event.srcElement);">{% for x,y in expedientes.fields.parroquia14.choices %}
+                            <option value="{{ x }}"{% if expedientes.fields.parroquia14.value == x %} selected{% endif %}>{{ y }}</option>{% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Sector</label>
+                          <input type="text" name="sector" onkeyup="mayus(this);" class="form-control" placeholder="Sector" maxlength="30" data-toggle="tooltip" data-original-title="Minimo 1 letras y Maximo 30" data-trigger="hover" data-placement="right" onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 3);">
+                        </div>
+                        <span class="help-block">{{expedientes.sector.errors}}</span> 
+                      </div>
+                    </div>
+                  </div>  
+                  <h4 class="form-section"><i class="icon-clipboard4"></i> Requerimientos</h4>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="checkbox" id="check" onchange="habilitar(this.checked);" checked> Solicitud Oraganizacion
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input name="rif" id="segundo" maxlength="10" type="text" class="form-control" placeholder="RIF" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Maximo 10 Digitos" onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 3);" onkeyup="mayus(this);">  
+                             
+                        <label id="segundo">Nombre de la Organizacion</label>
+                        <input name="nomb_organizacion" id="tercero" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="" maxlength="30" placeholder="Nombre de la Organizacion" onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 2);" maxlength="30" onkeyup="mayus(this);">
+                      </div>
+                    </div>
+                  </div>
+                  <p></p>
+                <!-- CÉDULA -->
+                <div class="form-section"></div>
+                <div class="row">
+                  <div class="col-lg-6 col-sm-6 col-12">
+                    <label>Adjuntar Cedula</label>
+                      <div class="input-group">
+                        <label class="input-group-btn">
+                          <span class="btn btn-primary">
+                            Buscar&hellip; <input type="file" name="imagen_cedula" style="display: none;">
+                          </span>
+                        </label>
+                        <input type="text" name="imagen_cedula" class="form-control" readonly>
+                      </div>
+                  </div>                
+                  <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label>Adjuntar Rif</label>
+                        <div class="input-group">
+                          <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                              Buscar&hellip; <input type="file" name="imagen_rif" style="display: none;">
+                            </span>
+                          </label>
+                          <input type="text" name="imagen_rif" class="form-control" readonly >
+                        </div>    
+                    </div>
+                  </div>   
+                  <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label>Adjuntar Certificado INTI</label>
+                        <div class="input-group">
+                          <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                              Buscar&hellip; <input type="file" name="imagen_inti" style="display: none;">
+                            </span>
+                          </label>
+                          <input type="text" name="imagen_inti" class="form-control" readonly >
+                        </div>    
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label>Adjuntar Plano de la Parcela</label>
+                        <div class="input-group">
+                          <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                              Buscar&hellip; <input type="file" name="imagen_plano" style="display: none;">
+                            </span>
+                          </label>
+                          <input type="text" name="imagen_plano" class="form-control" readonly >
+                        </div>    
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label>Adjuntar Carta de Oucpacion</label>
+                        <div class="input-group">
+                          <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                              Buscar&hellip; <input type="file" name="imagen_ocupacion" style="display: none;">
+                            </span>
+                          </label>
+                          <input type="text" name="imagen_ocupacion" class="form-control" readonly >
+                        </div>    
+                    </div> 
+                  </div>   
+                  <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label>Adjuntar Carta de Residencia</label>
+                        <div class="input-group">
+                          <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                              Buscar&hellip; <input type="file" name="imagen_residencia" style="display: none;">
+                            </span>
+                          </label>
+                          <input type="text" name="imagen_residencia" class="form-control" readonly >
+                        </div>    
+                    </div>
+                  </div> 
+               </div>
+               <span class="help-block">{{expedientes.imagen_cedula.errors}}</span>
+              </div>    
+                <center>
+                  <div class="form-actions">
+                    <a href="{% url 'Dashboard' %}">
+                      <button type="button" class="btn btn-danger mr-1">
+                        <i class="icon-cross2"></i> Cancelar
+                      </button>
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                      <i class="icon-check2"></i> Guardar
+                    </button>
+                  </div>
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

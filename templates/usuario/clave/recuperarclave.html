@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Recuperar Contraseña - AgroSoft {% endblock %}
+{% block navtop %} {% endblock %}
+{% block navleft %} {% endblock %}
+{% block body %}
+<body data-open="click" data-menu="vertical-menu" data-col="1-column" class="vertical-layout vertical-menu 1-column  blank-page blank-page">
+	{% endblock %}
+
+	{% block content %}
+	<div class="app-content content container-fluid">
+		<div class="content-wrapper">
+			<div class="content-header row">
+			</div>
+			<div class="content-body">
+				<section class="flexbox-container">
+					<div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-2 p-0">
+						<div class="card border-grey border-lighten-3 px-2 py-2 m-0">
+							<div class="card-header no-border pb-0">
+								<div class="card-title text-xs-center">
+									<img src="{% static 'img/Logo.png' %}" alt="AgroSoft Logo">
+								</div>
+								<h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Le enviaremos un enlace para restablecer su contraseña.</span></h6>
+							</div>
+							<div class="card-body collapse in">
+								<div class="card-block">
+									<form class="form-horizontal" novalidate method="POST">{% csrf_token %}
+										<fieldset class="form-group position-relative has-icon-left">
+											<input name="email" type="email" class="form-control form-control-lg input-lg" placeholder="Correo Electrónico" required onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 3);" maxlength="30" data-toggle="tooltip" data-original-title="ejemplo@email.com" data-trigger="focus" data-placement="right">
+											<div class="form-control-position">
+												<i class="icon-mail6"></i>
+											</div>
+										</fieldset>
+										<button type="submit" class="btn btn-primary btn-lg btn-block"><i class="icon-lock4"></i> Recuperar Contraseña</button>
+									</form>
+								</div>
+							</div>
+							<div class="card-footer no-border">
+								<p class="float-sm-left text-xs-center"><a href="{% url 'Usuarios:LoginUsuario' %}" class="card-link">Iniciar Sesión</a></p>
+								<p class="float-sm-right text-xs-center">¿Aún no tienes cuenta? <a href="{% url 'Usuarios:RegUsuario' %}" class="card-link">Regístrate</a></p>
+							</div>
+						</div>
+					</div>
+				</section>
+				{% endblock %}
+
+				{% block footer %} {% endblock %}
+
+
+

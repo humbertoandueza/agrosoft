@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Editar Información - AgroSoft {% endblock %}
+
+{% block content %}
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<!-- Título de Página -->
+			<div class="content-header-left col-md-4 col-xs-12 mb-1">
+				<h2 class="content-header-title">Editar Información</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-8 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Usuario</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">{{user.username}}</a>
+						</li>
+						<li class="breadcrumb-item active">Editar Información
+						</li>
+					</ol>
+				</div>
+			</div>
+			<!-- Formulario -->
+			<div class="row match-height">
+				<div class="col-md-8 offset-md-2">
+					<div class="card">
+						<div class="card-header">
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block">
+								<form class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+									<div class="form-body">
+										<!-- 1 -->
+										<div class="form-group">
+											<label>Correo Electrónico</label>
+											<input type="text" class="form-control" placeholder="Correo Electrónico" name="email" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Correo Electrónico" data-trigger="hover" data-placement="top" value="{{user.email}}"  onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 3);">
+										</div>
+										<!-- 2 -->
+										<div class="form-group">
+											<label>Primer Nombre</label>
+											<input type="text" class="form-control" placeholder="Primer Nombre" name="pri_nombre" data-toggle="tooltip" data-original-title="Ingrese el Primer Nombre" data-trigger="hover" data-placement="top" value="{{user.perfil.pri_nombre}}" onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 2);" maxlength="30" onkeyup="mayus(this);">	
+										</div>
+										<!-- 3 -->
+										<div class="form-group">
+											<label>Segundo Nombre</label>
+											<input type="text" class="form-control" placeholder="Segundo Nombre" name="seg_nombre" data-toggle="tooltip" data-original-title="Ingrese el Segundo Nombre" data-trigger="hover" data-placement="top" {% if user.perfil.seg_nombre == None %} {% else %} value="{{user.perfil.seg_nombre}}" {% endif %} onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 2);" maxlength="30" onkeyup="mayus(this);">
+										</div>
+										<!-- 4 -->
+										<div class="form-group">
+											<label>Primer Apellido</label>
+											<input type="text" class="form-control" placeholder="Primer Apellido" name="pri_apellido" data-toggle="tooltip" data-original-title="Ingrese el Primer Apellido" data-trigger="hover" data-placement="top" value="{{user.perfil.pri_apellido}}" onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 2);" maxlength="30" onkeyup="mayus(this);">	
+										</div>
+										<!-- 5 -->
+										<div class="form-group">
+											<label>Segundo Apellido</label>
+											<input type="text" class="form-control" placeholder="Segundo Apellido" name="seg_apellido" data-toggle="tooltip" data-original-title="Ingrese el Segundo Apellido" data-trigger="hover" data-placement="top" {% if user.perfil.seg_apellido == None %} {% else %} value="{{user.perfil.seg_apellido}}" {% endif %} onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 2);" maxlength="30" onkeyup="mayus(this);">
+										</div>
+										<!-- 6 -->
+										<div class="form-group">
+											<label>Género</label>
+											<select name="genero"
+											onblur="enviar(event.srcElement);"
+											class="form-control"
+											data-toggle="tooltip"
+											data-trigger="hover"
+											data-placement="top"
+											data-title="Seleccione su Género" {{form1.genero}}<span>
+											</select>
+										</div>
+										<!-- 7 -->
+										<div class="form-group">
+											<label>Teléfono</label>
+											<input type="text" class="form-control" placeholder="Teléfono" name="telefono" onpaste="return false"; onkeypress=" return Teclas(event, 1);" onblur="enviar(event.srcElement);" maxlength="11" data-toggle="tooltip" data-original-title="Ingrese 11 digitos, incluyendo codigo telefonico" data-toggle="tooltip"data-trigger="hover" data-placement="top" {% if user.perfil.telefono == None %} {% else %} value="{{user.perfil.telefono}}" {% endif %}>
+										</div>
+										<!-- 8 -->
+										<div class="form-group">
+											<label>Direccion</label>
+											<textarea maxlength="255" rows="5" class="form-control" name="direccion" placeholder="Dirección" data-toggle="tooltip" data-original-title="Ingrese la Dirección detalladamente" data-trigger="hover" data-placement="top" onpaste="return false"; onkeypress=" return Teclas(event, 3);" onblur="enviar(event.srcElement);" maxlength="150">{{user.perfil.direccion}}</textarea>							
+										</div>
+										<!-- 9 -->
+										<div class="form-group" style="display: none">
+											<label>Cargo</label>
+											<select name="cargo"
+											class="form-control"
+											data-toggle="tooltip"
+											data-trigger="hover"
+											data-placement="top"
+											data-title="Seleccione su Género" {{form1.cargo}}<span>
+											</select>
+										</div>
+									</div>
+									<center>
+										<div class="form-actions">
+											<a href="{% url 'Dashboard' %}">
+												<button type="button" class="btn btn-danger mr-1">
+													<i class="icon-cross2"></i> Cancelar
+												</button>
+											</a>
+											<button type="submit" class="btn btn-success">
+												<i class="icon-check2"></i> Guardar
+											</button>
+										</div>
+									</center>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

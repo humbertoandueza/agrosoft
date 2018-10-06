@@ -1,0 +1,82 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Registro de Rubro - AgroSoft {% endblock %}
+
+{% block content %}
+<style type="text/css">
+	span.help-block > ul > li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		color: #a94442;
+		
+	}
+</style>
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<!-- Título de Página -->
+			<div class="content-header-left col-md-6 col-xs-12 mb-1">
+				<h2 class="content-header-title">Registro de Rubro</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Registros</a>
+						</li>
+						<li class="breadcrumb-item active"><a href="{% url 'Registros:RegRubro' %}">Rubro</a>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<!-- Formulario -->
+			<div class="row match-height">
+				<div class="col-md-8 offset-md-2">
+					<div class="card">
+						<div class="card-header">
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block">
+								<form class="form" method="POST" onsubmit="return Validar(event)">{% csrf_token %}
+									<div class="form-body">
+										<div class="form-group">
+											<label>Código</label>
+											<input type="text" class="form-control" placeholder="Código" name="codigo" maxlength="10" data-toggle="tooltip" data-original-title="Ingrese el Código del Rubro" data-trigger="hover" data-placement="top"  onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 3);" onkeyup="mayus(this);">
+											<span class="help-block">{{rubros.codigo.errors}}</span>	
+										</div>
+										<div class="form-group">
+											<label>Nombre</label>
+											<input type="text" class="form-control" placeholder="Nombre" name="nombre" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Nombre del Rubro" data-trigger="hover" data-placement="top" onblur="enviar(event.srcElement);" onpaste="return false"; onkeypress=" return Teclas(event, 2);" onkeyup="mayus(this);">
+											<span class="help-block">{{rubros.nombre.errors}}</span>
+										</div>
+									</div>
+									<center>
+										<div class="form-actions">
+											<a href="{% url 'Dashboard' %}">
+												<button type="button" class="btn btn-danger mr-1">
+													<i class="icon-cross2"></i> Cancelar
+												</button>
+											</a>
+											<button type="submit" class="btn btn-success">
+												<i class="icon-check2"></i> Guardar
+											</button>
+										</div>
+									</center>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Consulta de Rubros - AgroSoft {% endblock %}
+
+{% block content %}
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-6 col-xs-12 mb-1">
+				<h2 class="content-header-title">Consulta de Rubros</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Consultas</a>
+						</li>
+						<li class="breadcrumb-item active">Rubros
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-body">
+			<!-- SECRETARIA(O) -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">RUBROS</h4>
+							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">{% with total=rubros.count %} {{total}} {% endwith %}</span></li>
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="thead-inverse">
+											<tr style="border-top: 1px hidden">
+												<th>CÓDIGO</th>
+												<th>NOMBRE</th>
+												<th>ACCIÓN</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for dato in rubros %}
+											<tr>
+												<td>{{dato.codigo}}</td>
+												<td>{{dato.nombre}}</td>
+												<td>
+													<a href="{% url 'Registros:EditarRubro' pk=dato.id %}">
+														<i class="icon-edit2
+														"></i> Editar
+													</a>
+												</td>
+												{% empty %}
+												<td colspan="3"><center>NO HAY RUBROS REGISTRADOS</center></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- RUBROS FIN// -->
+		</div>
+	</div>
+</div>
+{% endblock %}

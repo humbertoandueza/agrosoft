@@ -1,0 +1,116 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Consulta de Expedientes - AgroSoft {% endblock %}
+
+{% block content %}
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-6 col-xs-12 mb-1">
+				<h2 class="content-header-title">Consulta de Expedientes</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Consultas</a>
+						</li>
+						<li class="breadcrumb-item active">Expedientes
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-body">
+			<!-- SECRETARIA(O) -->
+			<div class="card-block pb-0">
+            <fieldset class="form-group position-relative mb-0">
+            	<form method="POST" action="">{% csrf_token %}
+                	<input type="text" class="form-control form-control-lg input-lg" type="text" name="q" placeholder="Buscar Expediente..." value="{{ request.POST.q }}" id="iconLeft">
+                	<div class="form-control-position">
+                    	<i class="icon-ei-search"></i>
+                	</div>
+                </form>	
+            </fieldset>
+        	</div>
+        	<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">EXPEDIENTES</h4>
+							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">{% with total=expedientes.count %} {{total}} {% endwith %}</span></li>
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="thead-inverse">
+											<tr>
+												<th>CODIGO</th>
+												<th>SOLICITANTE</th>
+												<th>ACCIONES</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for dato in expedientes %}
+											<tr>
+												<td>{{dato.id}}</td>
+												<td>{{dato.solicitante.pri_nombre}} {{dato.solicitante.pri_apellido}}</td>
+												<td>
+													<a href="{% url 'Consultas:VerExpediente' pk=dato.id %}">
+														<i class="icon-eye6"> Ver</i>
+													</a>
+													|
+													<a href="{% url 'Registros:EditarExpediente' pk=dato.id %}">
+														<i class="icon-edit"> Editar</i>	
+													</a>
+												</td>
+												{% empty %}
+												<td colspan="3"><center>NO HAY EXPEDIENTES.</center></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<center>
+						{% if expedientes.has_other_pages %}
+						<ul class="pagination">
+							{% if expedientes.has_previous %}
+							<li><a href="?page={{ expedientes.previous_page_number }}">&laquo;</a></li>
+							{% else %}
+							<li class="disabled"><span>&laquo;</span></li>
+							{% endif %}
+							{% for i in expedientes.paginator.page_range %}
+							{% if expedientes.number == i %}
+							<li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+							{% else %}
+							<li><a href="?page={{ i }}">{{ i }}</a></li>
+							{% endif %}
+							{% endfor %}
+							{% if expedientes.has_next %}
+							<li><a href="?page={{ expedientes.next_page_number }}">&raquo;</a></li>
+							{% else %}
+							<li class="disabled"><span>&raquo;</span></li>
+							{% endif %}
+						</ul>
+						{% endif %}
+					</center>-->
+</div>
+{% endblock %}

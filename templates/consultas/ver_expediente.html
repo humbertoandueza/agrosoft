@@ -1,0 +1,316 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Consulta de Expedientes - AgroSoft {% endblock %}
+
+{% block content %}
+<style type="text/css">
+.thumbnail {
+  max-width: 40%;
+}
+
+.italic { font-style: italic; }
+.small { font-size: 0.8em; }
+
+/** LIGHTBOX MARKUP **/
+
+.lightbox {
+	/** Default lightbox to hidden */
+	display: none;
+
+	/** Position and style */
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+}
+
+.lightbox img {
+	/** Pad the lightbox image */
+	max-width: 90%;
+	max-height: 80%;
+	margin-top: 2%;
+}
+
+.lightbox:target {
+	/** Remove default browser outline */
+	outline: none;
+
+	/** Unhide lightbox **/
+	display: block;
+}
+</style>
+
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-6 col-xs-12 mb-1">
+				<h2 class="content-header-title">Expediente - {{expediente.codigo}}</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Consultas</a>
+						</li>
+						<li class="breadcrumb-item"><a href="#">Expedientes</a>
+						</li>
+						<li class="breadcrumb-item active">{{expediente.codigo}}
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div class="content-body">
+			<!-- SECRETARIA(O) -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">EXPEDIENTE</h4>
+							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>					
+						<div class="card-body collapse in">
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="thead-inverse">
+											<tr>
+												<th>SOLICITANTE</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr style="border-top: 1px hidden">
+												<th>Cédula</th>
+												<td>{{expediente.solicitante.user}}</td>
+											</tr>
+											<tr>
+												<th>Nombre y Apellido</th>
+												<td>{{expediente.solicitante.pri_nombre}} {{expediente.solicitante.pri_apellido}}</td>
+											</tr>
+											<tr>
+												<th scope="row">Dirección</th>
+												<td>{{expediente.solicitante.direccion}}</td>                 
+											</tr>
+											<tr>
+												<th scope="row">Teléfono</th>
+												<td>{{expediente.solicitante.telefono}}</td>
+											</tr>
+											<thead class="thead-inverse">
+												<tr>
+													<th>INFORMACION</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tr>
+												{% if expediente.rif != None %}
+												<th scope="row">RIF</th>
+												<td>{{expediente.rif}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.nomb_organizacion != None %}
+												<th scope="row">Nombre de la Organización</th>
+												<td>{{expediente.nomb_organizacion}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												<th scope="row">Municipio</th>
+												<td>{{expediente.municipio}}</td>
+											</tr>												
+											<tr>
+												{% if expediente.parroquia1 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia1}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia2 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia2}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia3 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia3}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia4 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia4}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia5 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia5}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia6 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia6}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia7 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia7}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia8 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia8}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia9 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia9}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia10 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia10}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia11 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia11}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia12 != None %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia12}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia13 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia13}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												{% if expediente.parroquia14 != None  %}
+												<th scope="row">Parroquia</th>
+												<td>{{expediente.parroquia14}}</td>
+												{% endif %}
+											</tr>
+											<tr>
+												<th scope="row">Cédula</th>
+												<td>
+													<!-- thumbnail image wrapped in a link -->
+													<a href="#img1">
+														<img src="{% static expediente.imagen_cedula.url %}" style="width: 100px; height: 100px" class="thumbnail">
+													</a>
+													<a href="#_" class="lightbox" id="img1">
+														<img src="{% static expediente.imagen_cedula.url %}">
+													</a>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">RIF</th>
+												<td>
+													<!-- thumbnail image wrapped in a link -->
+													<a href="#img1">
+														<img src="{% static expediente.imagen_rif.url %}" style="width: 100px; height: 100px" class="thumbnail">
+													</a>
+													<a href="#_" class="lightbox" id="img1">
+														<img src="{% static expediente.imagen_rif.url %}">
+													</a>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Certificado INTI</th>
+												<td>
+													<!-- thumbnail image wrapped in a link -->
+													<a href="#img1">
+														<img src="{% static expediente.imagen_inti.url %}" style="width: 100px; height: 100px" class="thumbnail">
+													</a>
+													<a href="#_" class="lightbox" id="img1">
+														<img src="{% static expediente.imagen_inti.url %}">
+													</a>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Plano de la Parcela</th>
+												<td>
+													<!-- thumbnail image wrapped in a link -->
+													<a href="#img1">
+														<img src="{% static expediente.imagen_plano.url %}" style="width: 100px; height: 100px" class="thumbnail">
+													</a>
+													<a href="#_" class="lightbox" id="img1">
+														<img src="{% static expediente.imagen_plano.url %}">
+													</a>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Carta de Ocupación</th>
+												<td>
+													<!-- thumbnail image wrapped in a link -->
+													<a href="#img1">
+														<img src="{% static expediente.imagen_ocupacion.url %}" style="width: 100px; height: 100px" class="thumbnail">
+													</a>
+													<a href="#_" class="lightbox" id="img1">
+														<img src="{% static expediente.imagen_ocupacion.url %}">
+													</a>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Carta de Residencia</th>
+												<td>
+													<!-- thumbnail image wrapped in a link -->
+													<a href="#img1">
+														<img src="{% static expediente.imagen_residencia.url %}" style="width: 100px; height: 100px" class="thumbnail">
+													</a>
+													<a href="#_" class="lightbox" id="img1">
+														<img src="{% static expediente.imagen_residencia.url %}">
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<center>
+										<div class="form-actions">
+											<a href="{% url 'Consultas:ConsultarExpediente' %}">
+												<button type="button" class="btn btn-danger mr-1">
+													<i class="icon-cross2"></i> Volver
+												</button>
+											</a>
+										</div>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+	</div>
+</div>
+
+{% endblock %}

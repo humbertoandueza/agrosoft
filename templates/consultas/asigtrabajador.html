@@ -1,0 +1,175 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Asignar Trabajador - AgroSoft {% endblock %}
+
+{% block content %}
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-6 col-xs-12 mb-1">
+				<h2 class="content-header-title">Asignar Trabajador</h2>
+			</div>
+			<div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'Dashboard' %}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Asignar Trabajador
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-body">
+			<!-- SECRETARIA(O) -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">USUARIOS</h4>
+							<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+							<div class="heading-elements">
+								<ul class="list-inline mb-0">
+									<li><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">{% with total=asigtrabajadores.count %} {{total}} {% endwith %}</span></li>
+									<li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+									<li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body collapse in">
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="thead-inverse">
+											<tr style="border-top: 1px hidden">
+												<th>CÉDULA</th>
+												<th>NOMBRE</th>
+												<th>APELLIDO</th>
+												<th>ACCIONES</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for dato in asigtrabajadores %}
+											<tr>
+												{% if dato.cargo == "Solicitante" %}
+												<td>{{dato.user.username}}</td>
+												<td>{{dato.pri_nombre}}</td>
+												<td>{{dato.pri_apellido}}</td>
+												<td>
+													<a href="#" data-toggle="modal" data-target="#{{dato.id}}">
+														<i class="icon-bag2
+														"></i> Asignar Cargo
+													</a>
+
+													<!-- Modal -->
+													<div class="modal fade" id="{{dato.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog" role="document">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel">{{dato.id}}</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<form class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+																		<div class="form-body">
+																			<div class="form-group">
+																				<label>Correo Electrónico</label>
+																				<input type="text" class="form-control" placeholder="Correo Electrónico" name="email" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Correo Electrónico" data-trigger="hover" data-placement="top" value="{{user.email}}">
+																			</div>
+																			<div class="form-group">
+																				<label>Primer Nombre</label>
+																				<input type="text" class="form-control" placeholder="Primer Nombre" name="pri_nombre" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Primer Nombre" data-trigger="hover" data-placement="top" value="{{user.perfil.pri_nombre}}">	
+																			</div>
+																			<div class="form-group">
+																				<label>Segundo Nombre</label>
+																				<input type="text" class="form-control" placeholder="Segundo Nombre" name="seg_nombre" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Segundo Nombre" data-trigger="hover" data-placement="top" {% if user.perfil.seg_nombre == None %} {% else %} value="{{user.perfil.seg_nombre}}" {% endif %}>
+																			</div>
+																			<div class="form-group">
+																				<label>Primer Apellido</label>
+																				<input type="text" class="form-control" placeholder="Primer Apellido" name="pri_apellido" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Primer Apellido" data-trigger="hover" data-placement="top" value="{{user.perfil.pri_apellido}}">	
+																			</div>
+																			<div class="form-group">
+																				<label>Segundo Apellido</label>
+																				<input type="text" class="form-control" placeholder="Segundo Apellido" name="seg_apellido" maxlength="30" data-toggle="tooltip" data-original-title="Ingrese el Segundo Apellido" data-trigger="hover" data-placement="top" {% if user.perfil.seg_apellido == None %} {% else %} value="{{user.perfil.seg_apellido}}" {% endif %}>
+																			</div>
+																			<div class="form-group">
+																				<label>Género</label>
+																				<select name="genero"
+																				class="form-control"
+																				data-toggle="tooltip"
+																				data-trigger="hover"
+																				data-placement="top"
+																				data-title="Seleccione su Género" {{form1.genero}}<span>
+																				</select>
+																			</div>
+																			<div class="form-group" style="display: none">
+																				<label>Género</label>
+																				<select name="cargo"
+																				class="form-control"
+																				data-toggle="tooltip"
+																				data-trigger="hover"
+																				data-placement="top"
+																				data-title="Seleccione su Género" {{form1.cargo}}<span>
+																				</select>
+																			</div>
+																		</div>
+																		<center>
+																			<div class="form-actions">
+																				<a href="{% url 'Dashboard' %}">
+																					<button type="button" class="btn btn-danger mr-1">
+																						<i class="icon-cross2"></i> Cancelar
+																					</button>
+																				</a>
+																				<button type="submit" class="btn btn-success">
+																					<i class="icon-check2"></i> Guardar
+																				</button>
+																			</div>
+																		</center>
+																	</form>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																	<button type="button" class="btn btn-primary">Save changes</button>
+																</div>
+															</div>
+														</div>
+													</div>
+
+
+
+
+
+
+
+													
+												</td>
+												{% else %}
+
+												{% endif %}
+												{% empty %}
+												<td colspan="4"><center>NO HAY USUARIOS REGISTRADOS</center></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- SECRETARIA(O) FIN// -->
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
